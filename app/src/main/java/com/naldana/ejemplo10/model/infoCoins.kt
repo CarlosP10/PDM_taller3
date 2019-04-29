@@ -4,8 +4,8 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class infoCoins(
-    val country:String = "N/A",
     val name: String = "N/A",
+    val country:String = "N/A",
     val value: Double = 0.0,
     val value_us: Double = 0.0,
     val year: Int = 0,
@@ -14,8 +14,8 @@ data class infoCoins(
     val img: String = "N/A"
 ):Parcelable{
     constructor(parcel: Parcel) : this(
-        country =parcel.readString(),
         name = parcel.readString(),
+        country =parcel.readString(),
         value = parcel.readDouble(),
         value_us = parcel.readDouble(),
         year= parcel.readInt(),
@@ -25,8 +25,8 @@ data class infoCoins(
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(country)
         parcel.writeString(name)
+        parcel.writeString(country)
         parcel.writeDouble(value)
         parcel.writeDouble(value_us)
         parcel.writeInt(year)
