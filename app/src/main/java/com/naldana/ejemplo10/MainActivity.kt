@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .setAction("Action", null).show()
         }
 
-        btn_act.setOnClickListener {
+        btn_refresh.setOnClickListener {
 
         }
 

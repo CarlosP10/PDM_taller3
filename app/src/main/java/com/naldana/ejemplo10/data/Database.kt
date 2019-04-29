@@ -49,6 +49,6 @@ class Database(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null
     // TODO(11) Se definen en constantes, el nombre de la base de datos y la versión
     companion object {
         const val DATABASE_NAME = "miprimerabase.db"
-        const val DATABASE_VERSION = 1
+        const val DATABASE_VERSION = 2
     }
 }
