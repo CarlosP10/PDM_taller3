@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var twoPane =  false
 
 
-    lateinit var mAdapter: coinAdapter
+    lateinit var mAdapter:coinAdapter
 
     override fun onDestroy() {
         dbHelper.close()
@@ -223,11 +223,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     Snackbar.make(drawer_layout, getString(R.string.alert_person_not_saved), Snackbar.LENGTH_SHORT)
                         .show()
                 } else {
-                    Snackbar.make(
-                        drawer_layout,
-                        getString(R.string.alert_person_saved_success) + newRowId,
-                        Snackbar.LENGTH_SHORT
-                    )
+                    Snackbar.make(drawer_layout, getString(R.string.alert_person_saved_success) + newRowId, Snackbar.LENGTH_SHORT)
                         .show()
                     mAdapter.setMonedas(readCoins())
                 }
