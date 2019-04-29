@@ -30,10 +30,14 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         <Button
-                android:id="@+id/btn_act"
-                android:layout_width="wrap_content"
+                android:id="@+id/btn_refresh"
+                android:layout_width="46dp"
+                android:layout_gravity="right"
                 android:layout_height="wrap_content"
-                android:text="actualizar"/>
+                android:drawableLeft="@drawable/add"
+                android:background="@color/colorPrimary"
+        />
+
 
     </android.support.design.widget.AppBarLayout>
 
