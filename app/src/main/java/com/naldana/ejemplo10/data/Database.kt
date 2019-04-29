@@ -13,11 +13,11 @@ private const val SQL_CREATE_ENTRIES =
             "${BaseColumns._ID} INTEGER PRIMARY KEY," +
             "${DatabaseContract.CoinEntry.COLUMN_NAME} TEXT," +
             "${DatabaseContract.CoinEntry.COLUMN_COUNTRY} TEXT," +
-            "${DatabaseContract.CoinEntry.COLUMN_VALUE} TEXT," +
-            "${DatabaseContract.CoinEntry.COLUMN_VALUE_US} TEXT," +
-            "${DatabaseContract.CoinEntry.COLUMN_YEAR} TEXT," +
+            "${DatabaseContract.CoinEntry.COLUMN_VALUE} REAL," +
+            "${DatabaseContract.CoinEntry.COLUMN_VALUE_US} REAL," +
+            "${DatabaseContract.CoinEntry.COLUMN_YEAR} INTEGER," +
             "${DatabaseContract.CoinEntry.COLUMN_REVIEW} TEXT," +
-            "${DatabaseContract.CoinEntry.COLUMN_ISAVAILABLE} TEXT," +
+            "${DatabaseContract.CoinEntry.COLUMN_ISAVAILABLE} INTEGER," +
             "${DatabaseContract.CoinEntry.COLUMN_IMG} TEXT)"
 
 
