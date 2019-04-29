@@ -11,12 +11,12 @@ import android.provider.BaseColumns
 private const val SQL_CREATE_ENTRIES =
     "CREATE TABLE ${DatabaseContract.CoinEntry.TABLE_NAME} (" +
             "${BaseColumns._ID} INTEGER PRIMARY KEY," +
-            "${DatabaseContract.CoinEntry.COLUMN_COUNTRY} TEXT," +
             "${DatabaseContract.CoinEntry.COLUMN_NAME} TEXT," +
+            "${DatabaseContract.CoinEntry.COLUMN_COUNTRY} TEXT," +
             "${DatabaseContract.CoinEntry.COLUMN_VALUE} TEXT," +
             "${DatabaseContract.CoinEntry.COLUMN_VALUE_US} TEXT," +
             "${DatabaseContract.CoinEntry.COLUMN_YEAR} TEXT," +
-            "${DatabaseContract.CoinEntry.COLUMN_REVIEW} TEXT)," +
+            "${DatabaseContract.CoinEntry.COLUMN_REVIEW} TEXT," +
             "${DatabaseContract.CoinEntry.COLUMN_ISAVAILABLE} TEXT," +
             "${DatabaseContract.CoinEntry.COLUMN_IMG} TEXT)"
 

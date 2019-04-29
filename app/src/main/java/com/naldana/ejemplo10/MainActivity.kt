@@ -130,8 +130,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         with(cursor) {
             while (moveToNext()) {
                 var coin = infoCoins(
-                    getString(getColumnIndexOrThrow(DatabaseContract.CoinEntry.COLUMN_COUNTRY)),
                     getString(getColumnIndexOrThrow(DatabaseContract.CoinEntry.COLUMN_NAME)),
+                    getString(getColumnIndexOrThrow(DatabaseContract.CoinEntry.COLUMN_COUNTRY)),
                     getDouble(getColumnIndexOrThrow(DatabaseContract.CoinEntry.COLUMN_VALUE)),
                     getDouble(getColumnIndexOrThrow(DatabaseContract.CoinEntry.COLUMN_VALUE_US)),
                     getInt(getColumnIndexOrThrow(DatabaseContract.CoinEntry.COLUMN_YEAR)),
@@ -195,7 +195,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             var gson : Gson = Gson()
             var element : infoAllCoin = gson.fromJson(result, infoAllCoin::class.java)
             for (i in 0 .. (element.coins.size-1)){
-                var dato : infoCoins = infoCoins(element.coins.get(i).country, element.coins.get(i).name,
+                var dato : infoCoins = infoCoins(element.coins.get(i).name, element.coins.get(i).country,
                     element.coins.get(i).value,
                     element.coins.get(i).value_us,
                     element.coins.get(i).year,
@@ -207,14 +207,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 val db = dbHelper.writableDatabase
                 val values = ContentValues().apply {
+                    put(DatabaseContract.CoinEntry.COLUMN_NAME, dato.name)
+                    put(DatabaseContract.CoinEntry.COLUMN_COUNTRY, dato.country)
                     put(DatabaseContract.CoinEntry.COLUMN_VALUE, dato.value)
                     put(DatabaseContract.CoinEntry.COLUMN_VALUE_US, dato.value_us)
                     put(DatabaseContract.CoinEntry.COLUMN_YEAR, dato.year)
                     put(DatabaseContract.CoinEntry.COLUMN_REVIEW, dato.review)
                     put(DatabaseContract.CoinEntry.COLUMN_ISAVAILABLE, dato.isAvailable)
                     put(DatabaseContract.CoinEntry.COLUMN_IMG, dato.img)
-                    put(DatabaseContract.CoinEntry.COLUMN_NAME, dato.name)
-                    put(DatabaseContract.CoinEntry.COLUMN_COUNTRY, dato.country)
                 }
 
                 val newRowId = db?.insert(DatabaseContract.CoinEntry.TABLE_NAME, null, values)
