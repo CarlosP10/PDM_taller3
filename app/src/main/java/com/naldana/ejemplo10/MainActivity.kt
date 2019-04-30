@@ -32,8 +32,8 @@ import java.net.URL
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     var dbHelper = Database(this) // TODO (12) Se crea una instancia del SQLiteHelper definido en la clase Database.
-    var twoPane =  false
-    private var coinList: ArrayList<infoCoins> = ArrayList()
+    var twoPane = false
+    private var coinList: List<infoCoins> = listOf()
 
 
     override fun onDestroy() {
@@ -68,19 +68,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         // TODO (20) Para saber si estamos en modo dos paneles
-        if (fragment_content != null ){
-            twoPane =  true
+        if (fragment_content != null) {
+            twoPane = true
         }
 
         initRecycler(lista)
-        FetchCoins().execute()
-        /*if(readCoins()==null){
+        //FetchCoins().execute()
+        if (readCoins().isEmpty()) { // TODO: Nunca iba a estar null, solo vacio
             FetchCoins().execute()
+        } else {
+            coinList = readCoins() // TODO: Hay que modifica la lista que usa el adptador
+            addCoinToList()
         }
-        else{
-            readCoins()
-            addCoinToList(infoCoins())
-        }*/
 
     }
 
@@ -145,13 +144,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var viewManager: LayoutManager
 
 
-    fun initRecycler(coins : ArrayList<infoCoins>) {
+    fun initRecycler(coins: ArrayList<infoCoins>) {
 
         //viewManager = LinearLayoutManager(this)
-        if(this.resources.configuration.orientation == 2
-            || this.resources.configuration.orientation == 4){
+        if (this.resources.configuration.orientation == 2
+            || this.resources.configuration.orientation == 4
+        ) {
             viewManager = LinearLayoutManager(this)
-        } else{
+        } else {
             viewManager = GridLayoutManager(this, 2)
         }
 
@@ -165,21 +165,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    fun addCoinToList(coins: infoCoins) {
-        coinList.add(coins)
+    fun addCoinToList() {
+        //coinList.add(coins)
         viewAdapter.setMonedas(coinList)
         Log.d("Number", coinList.size.toString())
     }
 
-    private var lista : ArrayList<infoCoins> = ArrayList<infoCoins>()
+    private var lista: ArrayList<infoCoins> = ArrayList<infoCoins>()
 
     private inner class FetchCoins() : AsyncTask<String, Void, String>() {
         override fun doInBackground(vararg params: String?): String {
-            var url : URL = NetworkUtils.buiURL()
+            var url: URL = NetworkUtils.buiURL()
             try {
-                var result : String = NetworkUtils.getResponseFromHttpUrl(url)
+                var result: String = NetworkUtils.getResponseFromHttpUrl(url)
                 return result
-            } catch (e : IOException){
+            } catch (e: IOException) {
                 e.printStackTrace()
                 return ""
             }
@@ -187,16 +187,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
-            var gson : Gson = Gson()
-            var element : infoAllCoin = gson.fromJson(result, infoAllCoin::class.java)
-            for (i in 0 .. (element.coins.size-1)){
-                var dato : infoCoins = infoCoins(element.coins.get(i).name, element.coins.get(i).country,
+            var gson: Gson = Gson()
+            var element: infoAllCoin = gson.fromJson(result, infoAllCoin::class.java)
+            for (i in 0..(element.coins.size - 1)) {
+                var dato: infoCoins = infoCoins(
+                    element.coins.get(i).name, element.coins.get(i).country,
                     element.coins.get(i).value,
                     element.coins.get(i).value_us,
                     element.coins.get(i).year,
                     element.coins.get(i).review,
                     element.coins.get(i).isAvailable,
-                    element.coins.get(i).img)
+                    element.coins.get(i).img
+                )
 
                 lista.add(dato)
 
@@ -218,7 +220,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     Snackbar.make(drawer_layout, getString(R.string.alert_person_not_saved), Snackbar.LENGTH_SHORT)
                         .show()
                 } else {
-                    Snackbar.make(drawer_layout, getString(R.string.alert_person_saved_success) + newRowId, Snackbar.LENGTH_SHORT)
+                    Snackbar.make(
+                        drawer_layout,
+                        getString(R.string.alert_person_saved_success) + newRowId,
+                        Snackbar.LENGTH_SHORT
+                    )
                         .show()
                     viewAdapter.setMonedas(readCoins())
                 }
@@ -247,10 +253,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    fun searchForCountry(country : String){
-        var listaS : ArrayList<infoCoins> = ArrayList<infoCoins>()
-        for (i in 0 .. (lista.size-1)){
-            if(lista.get(i).country.equals(country)){
+    fun searchForCountry(country: String) {
+        var listaS: ArrayList<infoCoins> = ArrayList<infoCoins>()
+        for (i in 0..(lista.size - 1)) {
+            if (lista.get(i).country.equals(country)) {
                 listaS.add(lista.get(i))
             }
             initRecycler(listaS)
