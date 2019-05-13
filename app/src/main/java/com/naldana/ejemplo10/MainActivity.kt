@@ -1,6 +1,8 @@
 package com.naldana.ejemplo10
 
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.ContentValues
 import android.content.Intent
 import android.os.AsyncTask
@@ -23,9 +25,13 @@ import com.naldana.ejemplo10.data.Database
 import com.naldana.ejemplo10.data.DatabaseContract
 import com.naldana.ejemplo10.model.infoAllCoin
 import com.naldana.ejemplo10.model.infoCoins
+import com.naldana.ejemplo10.model.infoModelCoin
+import kotlinx.android.synthetic.main.activity_detail_coin.*
+import kotlinx.android.synthetic.main.activity_detail_coin.tv_name
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.info_coins.*
 import java.io.IOException
 import java.net.URL
 
@@ -33,6 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     var dbHelper = Database(this) // TODO (12) Se crea una instancia del SQLiteHelper definido en la clase Database.
     var twoPane = false
+    lateinit var coinViewModel: infoModelCoin
     private var coinList: List<infoCoins> = listOf()
 
 
@@ -45,6 +52,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        //Inicializando el ViewModel
+        coinViewModel = ViewModelProviders.of(this).get(infoModelCoin::class.java)
+
+        //Ponemos un Observer para los cambios
+        coinViewModel.name.observe(this, Observer<String> { t ->
+            tv_name.text = t.toString()
+            tv_name.text = t.toString()
+        })
+
+        coinViewModel.country.observe(this,
+            Observer<String> { t -> tv_country.text = t.toString() })
+
+        coinViewModel.value.observe(this,
+            Observer<Double> { t -> tv_value.text = t.toString() })
+
+        coinViewModel.value_us.observe(this,
+            Observer<Double> { t -> tv_us_value.text = t.toString() })
+
+        coinViewModel.isAvailable.observe(this,
+            Observer<Int> { t -> tv_is_available.text = t.toString() })
+
+        coinViewModel.year.observe(this,
+            Observer<Int> { t -> tv_year.text = t.toString() })
+
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Add coin", Snackbar.LENGTH_LONG)
