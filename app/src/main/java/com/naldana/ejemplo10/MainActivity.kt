@@ -25,7 +25,7 @@ import com.naldana.ejemplo10.data.Database
 import com.naldana.ejemplo10.data.DatabaseContract
 import com.naldana.ejemplo10.model.infoAllCoin
 import com.naldana.ejemplo10.model.infoCoins
-import com.naldana.ejemplo10.model.infoModelCoin
+//import com.naldana.ejemplo10.model.infoModelCoin
 import kotlinx.android.synthetic.main.activity_detail_coin.*
 import kotlinx.android.synthetic.main.activity_detail_coin.tv_name
 import kotlinx.android.synthetic.main.activity_main.*
