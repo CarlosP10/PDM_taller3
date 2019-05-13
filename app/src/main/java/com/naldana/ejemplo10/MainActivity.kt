@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     var dbHelper = Database(this) // TODO (12) Se crea una instancia del SQLiteHelper definido en la clase Database.
     var twoPane = false
-    lateinit var coinViewModel: infoModelCoin
+    //lateinit var coinViewModel: infoModelCoin
     private var coinList: List<infoCoins> = listOf()
 
 
