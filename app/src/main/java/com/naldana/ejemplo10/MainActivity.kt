@@ -52,13 +52,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
+        /*
         //Inicializando el ViewModel
         coinViewModel = ViewModelProviders.of(this).get(infoModelCoin::class.java)
 
         //Ponemos un Observer para los cambios
         coinViewModel.name.observe(this, Observer<String> { t ->
-            tv_name.text = t.toString()
             tv_name.text = t.toString()
         })
 
@@ -75,7 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             Observer<Int> { t -> tv_is_available.text = t.toString() })
 
         coinViewModel.year.observe(this,
-            Observer<Int> { t -> tv_year.text = t.toString() })
+            Observer<Int> { t -> tv_year.text = t.toString() })*/
 
 
         fab.setOnClickListener { view ->

@@ -3,7 +3,7 @@ package com.naldana.ejemplo10.model
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 
-class infoModelCoin:ViewModel() {
+/*class infoModelCoin:ViewModel() {
     val name = MutableLiveData<String>()
     val country= MutableLiveData<String>()
     val value= MutableLiveData<Double>()
@@ -25,4 +25,4 @@ class infoModelCoin:ViewModel() {
         img.value = "N/A"
     }
 
-}
+}*/

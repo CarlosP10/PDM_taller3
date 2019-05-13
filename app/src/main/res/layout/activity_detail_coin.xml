@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<!---<layout>
     <data>
         <variable name="coin" type="com.naldana.ejemplo10.model.infoModelCoin"/>
-    </data>
-    <android.support.design.widget.CoordinatorLayout
+    </data>-->
+<android.support.design.widget.CoordinatorLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
@@ -85,7 +85,7 @@
                             android:textColor="@color/color_black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{coin.value}"
+                            android:text="@string/string_na"
                             android:layout_marginTop="16dp"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
@@ -110,7 +110,7 @@
                             android:id="@+id/tv_us_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{coin.value_us}"
+                            android:text="@string/string_na"
                             android:textSize="18sp"
                             android:textColor="@color/color_black"
                             android:layout_marginTop="16dp"
@@ -138,7 +138,7 @@
                             android:id="@+id/tv_year"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{coin.year}"
+                            android:text="@string/string_na"
                             android:layout_marginTop="16dp"
                             android:layout_marginLeft="16dp"
                             android:textSize="18sp"
@@ -167,7 +167,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
                             android:textColor="@color/color_black"
-                            android:text="@{coin.isAvailable}"
+                            android:text="@string/string_na"
                             android:layout_marginTop="16dp"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
@@ -192,7 +192,7 @@
                             android:id="@+id/tv_review"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{coin.review}"
+                            android:text="@string/string_na"
                             android:textSize="18sp"
                             android:textColor="@color/color_black"
                             android:layout_marginTop="16dp"
@@ -203,4 +203,4 @@
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
-</layout>
+<!--</layout>-->
